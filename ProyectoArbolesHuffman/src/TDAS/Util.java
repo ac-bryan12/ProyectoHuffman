@@ -47,18 +47,25 @@ public class Util {
     }
     public static String binarioHexadecimal(String binario){
         //habria que ver que se utiliza si una lista o algo mas
-        
-        
-        
-        return "";
+        String hexadecimal = "";
+        String[] bin = binario.split("");
+        for(int i = 0;i< bin.length;i+=4){ //Verificar condiciones acerca de que pasa cuando solo hay un numero binario o varios pero no 4
+            int e = Integer.parseInt(bin[i]+bin[i+1]+bin[i+2]+bin[i+3],2);
+            hexadecimal += Integer.toHexString(e);
+        }
+        return hexadecimal;
     }
-    
+
     public String hexadecimalBinario(String hexadecimal){
         
         return "";
     }
     
-    
+    public void guardarTexto(String nombreArchivo, String texto, HashMap<String,String> mapa){
+        
+        
+        
+    }
     
     
 }
