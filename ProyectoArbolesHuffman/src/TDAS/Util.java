@@ -49,7 +49,7 @@ public class Util {
         String hexadecimal = "";
         String[] bin = binario.split(" ");
         for(int i = 0;i< bin.length;i+=1){ 
-            hexadecimal+=validacionBinario(bin[i]);
+            hexadecimal+=validacionBinario(bin[i])+" ";
         }
         return hexadecimal;
     }
@@ -58,11 +58,11 @@ public class Util {
             case 4:
                 return String.valueOf(Integer.toHexString(Integer.parseInt(cadena,2)));
             case 3:
-                return String.valueOf(Integer.toHexString(Integer.parseInt(cadena,2)))+"-";
+                return String.valueOf(Integer.toHexString(Integer.parseInt(cadena,2)))+" -";
             case 2:
-                return String.valueOf(Integer.toHexString(Integer.parseInt(cadena,2)))+"--";
+                return String.valueOf(Integer.toHexString(Integer.parseInt(cadena,2)))+" - -";
             case 1:
-                return String.valueOf(Integer.toHexString(Integer.parseInt(cadena,2)))+"---";
+                return String.valueOf(Integer.toHexString(Integer.parseInt(cadena,2)))+" - - -";
         }  
         return null;   
     }
@@ -70,23 +70,15 @@ public class Util {
         String binario = "";
         String[] bin = hexadecimal.split(" ");
         for(int i = 0;i< bin.length;i+=1){ 
-            hexadecimal+=validacionHexadecimal(bin[i]);
+            binario+=validacionHexadecimal(bin[i])+" ";
         }
-        return hexadecimal;
+        return binario;
     }
     //Validacion inversa
     private static String validacionHexadecimal(String cadena){
-        switch (cadena.length()) {
-            case 4:
-                return String.valueOf(Integer.parseInt(cadena,16));
-            case 3:
-                return String.valueOf(Integer.parseInt(cadena,16))+"-";
-            case 2:
-                return String.valueOf(Integer.parseInt(cadena,16))+"--";
-            case 1:
-                return String.valueOf(Integer.parseInt(cadena,16))+"---";
-        }  
-        return null;   
+        if(!cadena.equals("-"))   
+            return String.valueOf(Integer.toBinaryString(Integer.parseInt(cadena,16))); 
+        return "";
     }
 
     
