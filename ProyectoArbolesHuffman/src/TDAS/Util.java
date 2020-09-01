@@ -70,14 +70,25 @@ public class Util {
         String binario = "";
         String[] bin = hexadecimal.split(" ");
         for(int i = 0;i< bin.length;i+=1){ 
-            binario+=validacionHexadecimal(bin[i])+" ";
+            binario += validacionHexadecimal(bin[i])+" ";
         }
         return binario;
     }
     //Validacion inversa
     private static String validacionHexadecimal(String cadena){
+        String Hexa = ""; 
         if(!cadena.equals("-"))   
-            return String.valueOf(Integer.toBinaryString(Integer.parseInt(cadena,16))); 
+            Hexa = String.valueOf(Integer.toBinaryString(Integer.parseInt(cadena,16)));
+        switch (Hexa.length()){
+                case 1:
+                    return "000" + Hexa; 
+                case 2:
+                    return "00" + Hexa;
+                case 3:   
+                    return "0" + Hexa;
+                case 4:
+                    return Hexa;
+            }
         return "";
     }
 
