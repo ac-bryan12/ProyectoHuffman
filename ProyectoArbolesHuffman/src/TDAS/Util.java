@@ -49,7 +49,7 @@ public class Util {
         String hexadecimal = "";
         String[] bin = binario.split(" ");
         for(int i = 0;i< bin.length;i+=1){ 
-            hexadecimal+=validacionBinario(bin[i])+" ";
+            hexadecimal+=validacionBinario(bin[i])+"";
         }
         return hexadecimal;
     }
@@ -58,27 +58,27 @@ public class Util {
             case 4:
                 return String.valueOf(Integer.toHexString(Integer.parseInt(cadena,2)));
             case 3:
-                return String.valueOf(Integer.toHexString(Integer.parseInt(cadena,2)))+" -";
+                return String.valueOf(Integer.toHexString(Integer.parseInt(cadena,2)))+"-";
             case 2:
-                return String.valueOf(Integer.toHexString(Integer.parseInt(cadena,2)))+" - -";
+                return String.valueOf(Integer.toHexString(Integer.parseInt(cadena,2)))+"--";
             case 1:
-                return String.valueOf(Integer.toHexString(Integer.parseInt(cadena,2)))+" - - -";
+                return String.valueOf(Integer.toHexString(Integer.parseInt(cadena,2)))+"---";
         }  
         return null;   
     }
     public static String hexadecimalBinario(String hexadecimal){
         String binario = "";
-        String[] bin = hexadecimal.split(" ");
-        for(int i = 0;i< bin.length;i+=1){ 
-            binario += validacionHexadecimal(bin[i])+" ";
+        String[] bin = hexadecimal.split("");
+        for(int i = 0;i< bin.length;i+=4){ 
+            binario += validacionHexadecimal(bin,i)+" ";
         }
         return binario;
     }
     //Validacion inversa
-    private static String validacionHexadecimal(String cadena){
+    private static String validacionHexadecimal(String[] cadena,int indice){
         String Hexa = ""; 
         if(!cadena.equals("-"))   
-            Hexa = String.valueOf(Integer.toBinaryString(Integer.parseInt(cadena,16)));
+            Hexa = String.valueOf(Integer.toBinaryString(Integer.parseInt(cadena[indice],16)));
         switch (Hexa.length()){
                 case 1:
                     return "000" + Hexa; 
@@ -91,7 +91,9 @@ public class Util {
             }
         return "";
     }
-
+    /*
+    
+    */
     
     public void guardarTexto(String nombreArchivo, String texto, HashMap<String,String> mapa){
         
