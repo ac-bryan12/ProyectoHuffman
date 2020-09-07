@@ -6,7 +6,10 @@
 package proyectohuffman;
 
 
+import TDAS.ArbolHuffman;
+import TDAS.Util;
 import java.io.File;
+import java.util.HashMap;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -40,10 +43,10 @@ public final class VentanaMenu {
     
     public void center() {
         VBox parteExterna = new VBox();
-        HBox mensajeMedico = new HBox();
+        HBox mensaje = new HBox();
         Label msg1 = new Label("Seleccione la opcion que desea");
-        mensajeMedico.getChildren().addAll(msg1);
-        mensajeMedico.setAlignment(Pos.CENTER);
+        mensaje.getChildren().addAll(msg1);
+        mensaje.setAlignment(Pos.CENTER);
 
         Button btnComprimir = new Button("COMPRIMIR");
         Button btnDescomprimir = new Button("DESCOMPRIMIR");
@@ -51,7 +54,7 @@ public final class VentanaMenu {
         HBox parteBoton = new HBox(btnComprimir,btnDescomprimir);
         parteBoton.setAlignment(Pos.CENTER);
         parteBoton.setSpacing(10);
-        parteExterna.getChildren().addAll(mensajeMedico, parteBoton);
+        parteExterna.getChildren().addAll(mensaje, parteBoton);
 
         parteExterna.setAlignment(Pos.CENTER);
         parteExterna.setSpacing(15);
@@ -65,7 +68,9 @@ public final class VentanaMenu {
              partArchivo.setAlignment(Pos.CENTER);
              partArchivo.setSpacing(10);
              Button btnConfirmar = new Button("CONFIRMAR");
+             Button btn2 = new Button("Siguiente");
              HBox parteBoton2 = new HBox(btnConfirmar);
+             HBox parteBoton3 = new HBox(btn2);
              parteBoton2.setAlignment(Pos.CENTER);
              parteExterna2.getChildren().addAll(partArchivo, parteBoton2);
              parteExterna2.setSpacing(10);
@@ -73,19 +78,80 @@ public final class VentanaMenu {
              root.setCenter(parteExterna2);
             
             btnConfirmar.setOnMouseClicked((e) -> {
-                Label lb = new Label();
                 FileChooser fc = new FileChooser();
                 fc.setTitle("Seleccionar un archivo");
                 Window Stage = null;
                 File selectedFile = fc.showOpenDialog(Stage);
-                fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("TXT FILES"));
+//                File fc.getSelectedExtensionFilter();
+//                fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("TXT FILES"));
                 if(selectedFile != null){
-                    lb.setText("File selected:" + selectedFile.getName());
+                    txtArchivo.setText(selectedFile.getPath());
+                    String  texto = Util.leerTexto(selectedFile.getPath());
+                    System.out.println(texto);
+                    HashMap<String,Integer> mapa =Util.calcularFrecuencias(texto);
+                    ArbolHuffman<String> arbol = new ArbolHuffman();
+                    System.out.println(arbol);
+                    arbol.calcularArbol(mapa);
+                    arbol.calcularCodigos();
+                    System.out.println(mapa);
+                    
+                    
                 }
                 else{
-                    lb.setText("File selection cancelled");
+                    txtArchivo.setText("File selection cancelled");
                 }
                         
+            });
+            btn2.setOnMouseClicked((e) -> {
+                
+                
+                
+                
+            });
+            
+        });
+        
+        
+        
+        
+        
+        btnDescomprimir.setOnMouseClicked((event) -> {
+             VBox parteExterna2 = new VBox(); 
+             Label archvit = new Label("Nombre del Archivo: ");
+             TextField txtArchivo = new TextField();
+             HBox partArchivo = new HBox(archvit,txtArchivo);
+             partArchivo.setAlignment(Pos.CENTER);
+             partArchivo.setSpacing(10);
+             Button btnConfirmar = new Button("CONFIRMAR");
+             Button btn2 = new Button("Siguiente");
+             HBox parteBoton2 = new HBox(btnConfirmar);
+             HBox parteBoton3 = new HBox(btn2);
+             parteBoton2.setAlignment(Pos.CENTER);
+             parteExterna2.getChildren().addAll(partArchivo, parteBoton2);
+             parteExterna2.setSpacing(10);
+             parteExterna2.setAlignment(Pos.CENTER);
+             root.setCenter(parteExterna2);
+            
+            btnConfirmar.setOnMouseClicked((e) -> {
+                FileChooser fc = new FileChooser();
+                fc.setTitle("Seleccionar un archivo");
+                Window Stage = null;
+                File selectedFile = fc.showOpenDialog(Stage);
+//                File fc.getSelectedExtensionFilter();
+//                fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("TXT FILES"));
+                if(selectedFile != null){
+                    txtArchivo.setText(selectedFile.getPath());
+                    
+                }
+                else{
+                    txtArchivo.setText("File selection cancelled");
+                }        
+            });
+            btn2.setOnMouseClicked((e) -> {
+                
+                
+                
+                
             });
             
         });

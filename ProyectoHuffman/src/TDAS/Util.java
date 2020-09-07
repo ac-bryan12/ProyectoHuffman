@@ -23,8 +23,8 @@ import java.util.logging.Logger;
 public class Util {
     
     public static String leerTexto(String archivo){
-        String line = null;
-        try(BufferedReader bffr = new BufferedReader(new FileReader("/src"+archivo))) {
+        String line = "";
+        try(BufferedReader bffr = new BufferedReader(new FileReader(archivo))) {
             String linea;
             while ((linea = bffr.readLine()) != null) {
                 line= line + linea;
@@ -94,16 +94,6 @@ public class Util {
             }
         return "";
     }
-    /*
-        guardarTexto
-Esta función recibe el nombre del archivo, el nuevo texto que se va a guardar en el archivo y un
-mapa con los códigos para cada carácter. La función procede a almacenar el nuevo texto en el
-archivo y genera un archivo adicional con la tabla de códigos, esto es con la finalidad de
-posteriormente poder decodificar el archivo en función del código asignado a cada letra. El
-nombre del archivo adicional puede ser definido de la siguiente manera:
-nombreArchivo+” _compress.txt”.
-void guardarTexto (String nombreArchivo, String texto, HashMap<String,String> mapa)
-    */
     
     public void guardarTexto(String nombreArchivo, String texto, HashMap<String,String> mapa){
         
@@ -121,8 +111,9 @@ void guardarTexto (String nombreArchivo, String texto, HashMap<String,String> ma
         }
     }
     
-    public static HashMap<String, String> mapa = new HashMap<>();
+   
     public static HashMap<String, String> leerMapa(String nombreArchivo) {
+        HashMap<String, String> mapa = new HashMap<>();
         try (BufferedReader bff = new BufferedReader(new FileReader("src/" + nombreArchivo + ".txt"))) {            
             String linea;
             while ((linea = bff.readLine()) != null) {                
