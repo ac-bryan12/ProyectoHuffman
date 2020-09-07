@@ -120,4 +120,21 @@ void guardarTexto (String nombreArchivo, String texto, HashMap<String,String> ma
             Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public static HashMap<String, String> mapa = new HashMap<>();
+    public static HashMap<String, String> leerMapa(String nombreArchivo) {
+        try (BufferedReader bff = new BufferedReader(new FileReader("src/" + nombreArchivo + ".txt"))) {            
+            String linea;
+            while ((linea = bff.readLine()) != null) {                
+                String[] array = linea.split("\\,");
+                mapa.put(array[0], array[1]);   
+            }
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return mapa;
+    }
 }
