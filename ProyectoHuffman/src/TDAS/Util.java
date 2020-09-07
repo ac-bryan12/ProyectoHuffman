@@ -95,7 +95,7 @@ public class Util {
         return "";
     }
     
-    public void guardarTexto(String nombreArchivo, String texto, HashMap<String,String> mapa){
+    public static void guardarTexto(String nombreArchivo, String texto, HashMap<String,String> mapa){
         
         try(BufferedWriter bfw = new BufferedWriter(new FileWriter("/src/"+nombreArchivo+" _compress.txt"))){
             for (Map.Entry<String, String> entry : mapa.entrySet()) {

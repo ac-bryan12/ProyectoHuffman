@@ -88,13 +88,15 @@ public final class VentanaMenu {
                     txtArchivo.setText(selectedFile.getPath());
                     String  texto = Util.leerTexto(selectedFile.getPath());
                     System.out.println(texto);
-                    HashMap<String,Integer> mapa =Util.calcularFrecuencias(texto);
+                    HashMap<String,Integer> mapaf =Util.calcularFrecuencias(texto);
                     ArbolHuffman<String> arbol = new ArbolHuffman();
                     System.out.println(arbol);
-                    arbol.calcularArbol(mapa);
-                    arbol.calcularCodigos();
-                    System.out.println(mapa);
-                    
+                    arbol.calcularArbol(mapaf);
+                    HashMap<String,String> mapac = arbol.calcularCodigos();
+                    System.out.println(mapaf);
+                    String texto2 = ArbolHuffman.codificar(texto, mapac);
+                    Util.binarioHexadecimal(texto2);
+                    Util.guardarTexto("ArchivoHexadecimal", texto2, mapac);
                     
                 }
                 else{
@@ -103,17 +105,18 @@ public final class VentanaMenu {
                         
             });
             btn2.setOnMouseClicked((e) -> {
-                
-                
-                
-                
+                VBox parteExterna3 = new VBox();
+                Label archvit2;  
+                archvit2 = new Label("Archivo comprimido");
+                archvit2 = new Label("No ha selecionado archivo");
+                TextField txtArchivo2 = new TextField();
+                HBox partArchivo2 = new HBox(archvit,txtArchivo);
+                root.setCenter(parteExterna2);
+                     
             });
             
         });
-        
-        
-        
-        
+       
         
         btnDescomprimir.setOnMouseClicked((event) -> {
              VBox parteExterna2 = new VBox(); 
@@ -136,11 +139,11 @@ public final class VentanaMenu {
                 FileChooser fc = new FileChooser();
                 fc.setTitle("Seleccionar un archivo");
                 Window Stage = null;
-                File selectedFile = fc.showOpenDialog(Stage);
+                File selectedFile2 = fc.showOpenDialog(Stage);
 //                File fc.getSelectedExtensionFilter();
 //                fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("TXT FILES"));
-                if(selectedFile != null){
-                    txtArchivo.setText(selectedFile.getPath());
+                if(selectedFile2 != null){
+                    txtArchivo.setText(selectedFile2.getPath());
                     
                 }
                 else{
