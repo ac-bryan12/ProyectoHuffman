@@ -22,17 +22,15 @@ import java.util.logging.Logger;
  */
 public class Pruebas {
     public static void main(String[] args){
-        String g =Util.binarioHexadecimal("0010 0100 1001 0010 0111 0110 1101 1011 0110 1101 1000 0000 0000 0000 0101 1011 0110 1101 1011 0110 0100 1001 0010 0100 1111 1111 1111 1111 1111 1111 0101 0101 0101 0101 0101 01 ");
-        System.out.println(g);
-        System.out.println("");
-        System.out.println(Util.hexadecimalBinario(g));
+        //System.out.println(Util.leerTexto("Archivo"));
+        
     }
     public static HashMap<String, String> mapa = new HashMap<>();
     public static HashMap<String, String> leerMapa(String nombreArchivo) {
-        try (BufferedReader bff = new BufferedReader(new FileReader("src/" + nombreArchivo + ".txt"))) {            
+        try (BufferedReader bff = new BufferedReader(new FileReader("src/"+ nombreArchivo+".txt"))) {            
             String linea;
             while ((linea = bff.readLine()) != null) {                
-                String[] array = linea.split("\\,");
+                String[] array = linea.split(",");
                 mapa.put(array[0], array[1]);   
             }
 

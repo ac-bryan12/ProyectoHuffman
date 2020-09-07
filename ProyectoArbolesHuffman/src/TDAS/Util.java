@@ -24,7 +24,7 @@ public class Util {
     
     public static String leerTexto(String archivo){
         String line = null;
-        try(BufferedReader bffr = new BufferedReader(new FileReader("/src"+archivo))) {
+        try(BufferedReader bffr = new BufferedReader(new FileReader("src/ArchivoPrueba/"+archivo+ ".txt"))) {
             String linea;
             while ((linea = bffr.readLine()) != null) {
                 line= line + linea;
@@ -129,7 +129,7 @@ void guardarTexto (String nombreArchivo, String texto, HashMap<String,String> ma
                 String[] array = linea.split("\\,");
                 mapa.put(array[0], array[1]);   
             }
-
+            
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
